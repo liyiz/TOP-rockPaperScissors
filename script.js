@@ -1,7 +1,6 @@
 console.log("hello there.")
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -52,6 +51,31 @@ function getHumanChoice() {
 
 }
 
+function playGame(rounds) {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    // run rounds
+    for (let i = 0 ; i < rounds; i++) {
+
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoiceB();
+
+        let winner = playRound(humanSelection, computerSelection);
+    
+        winner ? humanScore++ : computerScore++;
+    }
+
+    // end the game
+    console.log("Game over! Human: " + humanScore + " Computer: " + computerScore);
+    if (humanScore > computerScore) {
+        console.log("Human wins!");
+    } else {
+        console.log("Computer wins!");
+    }
+
+}
+
 function playRound(humanChoice, computerChoice) {
     alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "rock") {
@@ -65,31 +89,29 @@ function playRound(humanChoice, computerChoice) {
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "paper") {
         console.log("You lose! Paper wraps Rock");
-        computerScore++;
+        return false;
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissors") {
         console.log("You win! Rock smashes Scissors");
-        humanScore++;
+        return true;
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock") {
         console.log("You win! Paper wraps Rock");
-        humanScore++;
+        return true;
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "scissors") {
         console.log("You lose! Scissors cuts Paper");
-        computerScore++;
+        return false;
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "paper") {
         console.log("You win! Scissors cuts Paper");
-        humanScore++;
+        return true;
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "rock") {
         console.log("You lose! Rock smashes Scissors");
-        computerScore++;
+        return false;
     }
+
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoiceB();
-
-playRound(humanSelection, computerSelection);
+playGame(5);
