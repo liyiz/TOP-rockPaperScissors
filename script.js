@@ -54,3 +54,17 @@ function getHumanChoice() {
     }
 
 }
+
+function playRound(humanChoice, computerChoice) {
+    // how to compare the two choices though?
+    if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "rock") {
+        console.log("Draw! Rock doesn't do anything to Rock");
+    }
+    // console.log("You lose! Paper beats Rock");
+    // onsole.log("You win! Paper beats Rock");
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerchoiceB();
+
+playRound(humanSelection, computerSelection);
