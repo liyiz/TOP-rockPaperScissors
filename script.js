@@ -62,8 +62,12 @@ function playGame(rounds) {
         const computerSelection = getComputerChoiceB();
 
         let winner = playRound(humanSelection, computerSelection);
-    
-        winner ? humanScore++ : computerScore++;
+        if (winner === "human") {
+            humanScore++
+        }
+        if (winner === "computer") {
+            computerScore++
+        }
     }
 
     // end the game
@@ -89,29 +93,31 @@ function playRound(humanChoice, computerChoice) {
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "paper") {
         console.log("You lose! Paper wraps Rock");
-        return false;
+        return "computer";
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissors") {
         console.log("You win! Rock smashes Scissors");
-        return true;
+        return "human";
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock") {
         console.log("You win! Paper wraps Rock");
-        return true;
+        return "human";
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "scissors") {
         console.log("You lose! Scissors cuts Paper");
-        return false;
+        return "computer";
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "paper") {
         console.log("You win! Scissors cuts Paper");
-        return true;
+        return "human";
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "rock") {
         console.log("You lose! Rock smashes Scissors");
-        return false;
+        return "computer";
     }
 
 }
 
 playGame(5);
+
+// todo: fix bug when player cancels or enters invalid choice
