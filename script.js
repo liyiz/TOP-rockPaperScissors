@@ -1,5 +1,8 @@
 console.log("hello there.")
 
+let humanScore = 0;
+let computerScore = 0;
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
