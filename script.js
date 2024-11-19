@@ -65,21 +65,27 @@ function playRound(humanChoice, computerChoice) {
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "paper") {
         console.log("You lose! Paper wraps Rock");
+        computerScore++;
     }
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "scissors") {
         console.log("You win! Rock smashes Scissors");
+        humanScore++;
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "rock") {
         console.log("You win! Paper wraps Rock");
+        humanScore++;
     }
     if (humanChoice.toLowerCase() === "paper" && computerChoice.toLowerCase() === "scissors") {
         console.log("You lose! Scissors cuts Paper");
+        computerScore++;
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "paper") {
         console.log("You win! Scissors cuts Paper");
+        humanScore++;
     }
     if (humanChoice.toLowerCase() === "scissors" && computerChoice.toLowerCase() === "rock") {
         console.log("You lose! Rock smashes Scissors");
+        computerScore++;
     }
 }
 
