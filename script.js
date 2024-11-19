@@ -30,8 +30,12 @@ function getComputerChoiceB() {
 
 
 function getHumanChoice() {
-    let humanChoice = prompt("Rock, Paper, or Scissors?", "rock");
-    
+    let humanChoice = prompt("Rock, Paper, or Scissors?", "");
+    if (humanChoice === null) {
+        alert("Aw, not feeling up to it? Afraid a number generator will beat you?");
+        return null;
+    }
+
     if (humanChoice.toLowerCase() === "rock") {
         alert("You picked rock.");
         return "rock";
@@ -45,7 +49,5 @@ function getHumanChoice() {
         alert("You didn't pick a valid choice, try again");
         getHumanChoice();
     }
-    if (humanChoice === null) {
-        alert("Aw, not feeling up to it? Afraid a number generator will beat you?");
-    }
+
 }
