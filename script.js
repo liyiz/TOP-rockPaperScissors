@@ -1,6 +1,3 @@
-console.log("hello there.")
-
-
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -35,7 +32,7 @@ function getHumanChoice() {
     let humanChoice = prompt("Rock, Paper, or Scissors?", "");
     if (humanChoice === null) {
         alert("Aw, not feeling up to it? Afraid a number generator will beat you?");
-        return null;
+        return "cancel";
     }
 
     if (humanChoice.toLowerCase() === "rock") {
@@ -61,6 +58,11 @@ function playGame(rounds) {
         const humanSelection = getHumanChoice();
         const computerSelection = getComputerChoiceB();
 
+        if (humanSelection === "cancel") {
+            alert("You cancelled the game :< Refresh the page to restart");
+            return;
+        }
+
         let winner = playRound(humanSelection, computerSelection);
         if (winner === "human") {
             humanScore++
@@ -68,6 +70,7 @@ function playGame(rounds) {
         if (winner === "computer") {
             computerScore++
         }
+
     }
 
     // end the game
@@ -82,6 +85,7 @@ function playGame(rounds) {
 
 function playRound(humanChoice, computerChoice) {
     alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
+
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "rock") {
         console.log("Draw! Rock doesn't do anything to Rock");
     }
