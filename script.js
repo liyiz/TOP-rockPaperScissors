@@ -99,12 +99,41 @@ function playGame(humanSelection) {
         } else {
             console.log("Computer wins!");
         }
+
+        reportResults(winner)
+
     }
 
 }
 
+
+function reportResults(winner) {
+    const container = document.querySelector('#results');
+
+    // <h1>Game Over</h1>
+    // <h3>Human: score</h3>
+    // <h3>Computer: score</h3>
+    // <h2>Winner wins!</h2>
+
+    const title = document.createElement('h1');
+    const scoreH = document.createElement('h3');
+    const scoreC = document.createElement('h3');
+    const whoWinner = document.createElement('h2');
+
+    title.textContent = 'Game over!';
+    scoreH.textContent = 'Human: ' + humanScore;
+    scoreC.textContent = 'Computer: ' + computerScore;
+    whoWinner.textContent = winner + ' wins!';
+
+
+    container.appendChild(title);
+    container.appendChild(scoreH);
+    container.appendChild(scoreC);
+    container.appendChild(whoWinner);
+}
+
+
 function playRound(humanChoice, computerChoice) {
-    // alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
 
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "rock") {
         console.log("Draw! Rock doesn't do anything to Rock");
