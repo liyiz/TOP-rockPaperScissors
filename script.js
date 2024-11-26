@@ -31,28 +31,11 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function getComputerChoiceA() {
+function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     let num = 0;
     num = getRandomInt(choices.length);
     return choices[num];
-}
-
-function getComputerChoiceB() {
-    let choice;
-    let num = 0;
-    num = getRandomInt(3);
-
-    if (num === 0) {
-        choice = "rock";
-    }
-    if (num === 1) {
-        choice = "paper";
-    }
-    if (num === 2) {
-        choice = "scissors";
-    }
-    return choice;
 }
 
 
@@ -84,7 +67,7 @@ function playGame(rounds) {
     for (let i = 0 ; i < rounds; i++) {
 
         const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoiceB();
+        const computerSelection = getComputerChoice();
 
         if (humanSelection === "cancel") {
             alert("You cancelled the game :< Refresh the page to restart");
