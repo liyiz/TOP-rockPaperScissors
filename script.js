@@ -1,5 +1,12 @@
+let humanScore = 0;
+let computerScore = 0;
+
 document.addEventListener('DOMContentLoaded',() => {
     // handle load event
+
+    // reset global game variables
+    resetGame();
+
     const btnPlay = document.createElement('button');
     btnPlay.textContent = 'Click me';
     btnPlay.addEventListener('click',() => { console.log('I got clicked')});
@@ -25,11 +32,16 @@ document.addEventListener('DOMContentLoaded',() => {
 });
 
 
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+}
 
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
+
 
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
@@ -58,6 +70,7 @@ function getHumanChoice() {
     }
 
 }
+
 
 function playGame(rounds) {
     let humanScore = 0;
@@ -93,6 +106,23 @@ function playGame(rounds) {
     }
 
 }
+
+
+function checkWinner() {
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    let winner = playRound(humanSelection, computerSelection);
+    if (winner === "human") {
+        humanScore++
+    }
+    if (winner === "computer") {
+        computerScore++
+    }
+
+}
+
 
 function playRound(humanChoice, computerChoice) {
     alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
