@@ -1,3 +1,31 @@
+document.addEventListener('DOMContentLoaded',() => {
+    // handle load event
+    const btnPlay = document.createElement('button');
+    btnPlay.textContent = 'Click me';
+    btnPlay.addEventListener('click',() => { console.log('I got clicked')});
+    const docBody = document.querySelector('body');
+    docBody.appendChild(btnPlay);
+
+    const btnRock = document.querySelector('#rock');
+    const btnPaper = document.querySelector('#paper');
+    const btnScissors = document.querySelector('#scissors');
+
+    btnRock.addEventListener('click', () => { 
+        console.log('you picked rock');
+        // playRound('rock', )
+    });
+
+    btnPaper.addEventListener('click', () => { 
+        console.log('you picked paper'); 
+    });
+
+    btnScissors.addEventListener('click', () => { 
+        console.log('you picked scissors'); 
+    });
+});
+
+
+
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -122,6 +150,6 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-playGame(5);
+// playGame(5);
 
 // todo: fix bug when player cancels or enters invalid choice
