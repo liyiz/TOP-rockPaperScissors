@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
     btnRock.addEventListener('click', () => { 
         console.log('you picked rock');
-        // playRound('rock', )
+        playRound('rock', getComputerChoice())
     });
 
     btnPaper.addEventListener('click', () => { 
