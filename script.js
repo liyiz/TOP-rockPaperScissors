@@ -1,5 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
+let currentRound = 0;
+const maxRounds = 5;
 
 document.addEventListener('DOMContentLoaded',() => {
     // handle load event
@@ -7,19 +9,14 @@ document.addEventListener('DOMContentLoaded',() => {
     // reset global game variables
     resetGame();
 
-    const btnPlay = document.createElement('button');
-    btnPlay.textContent = 'Click me';
-    btnPlay.addEventListener('click',() => { console.log('I got clicked')});
-    const docBody = document.querySelector('body');
-    docBody.appendChild(btnPlay);
-
+    // add events to choice buttons
     const btnRock = document.querySelector('#rock');
     const btnPaper = document.querySelector('#paper');
     const btnScissors = document.querySelector('#scissors');
 
     btnRock.addEventListener('click', () => { 
         console.log('you picked rock');
-        playRound('rock', getComputerChoice())
+        playGame('rock');
     });
 
     btnPaper.addEventListener('click', () => { 
@@ -35,6 +32,7 @@ document.addEventListener('DOMContentLoaded',() => {
 function resetGame() {
     humanScore = 0;
     computerScore = 0;
+    currentRound = 0;
 }
 
 
@@ -72,47 +70,15 @@ function getHumanChoice() {
 }
 
 
-function playGame(rounds) {
-    let humanScore = 0;
-    let computerScore = 0;
+function playGame(humanSelection) {
 
-    // run rounds
-    for (let i = 0 ; i < rounds; i++) {
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        if (humanSelection === "cancel") {
-            alert("You cancelled the game :< Refresh the page to restart");
-            return;
-        }
-
-        let winner = playRound(humanSelection, computerSelection);
-        if (winner === "human") {
-            humanScore++
-        }
-        if (winner === "computer") {
-            computerScore++
-        }
-
+    // if new game
+    if (currentRound >= maxRounds) {
+        resetGame();
     }
 
-    // end the game
-    console.log("Game over! Human: " + humanScore + " Computer: " + computerScore);
-    if (humanScore > computerScore) {
-        console.log("Human wins!");
-    } else {
-        console.log("Computer wins!");
-    }
-
-}
-
-
-function checkWinner() {
-
-    const humanSelection = getHumanChoice();
+    // if mid game
     const computerSelection = getComputerChoice();
-
     let winner = playRound(humanSelection, computerSelection);
     if (winner === "human") {
         humanScore++
@@ -121,11 +87,24 @@ function checkWinner() {
         computerScore++
     }
 
+    if (currentRound < maxRounds) {
+        currentRound++;
+    }
+
+    if (currentRound === maxRounds) {
+        // end the game - switch to reportResults()
+        console.log("Game over! Human: " + humanScore + " Computer: " + computerScore);
+        if (humanScore > computerScore) {
+            console.log("Human wins!");
+        } else {
+            console.log("Computer wins!");
+        }
+    }
+
 }
 
-
 function playRound(humanChoice, computerChoice) {
-    alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
+    // alert("You picked " + humanChoice + " and the computer picked " + computerChoice);
 
     if (humanChoice.toLowerCase() === "rock" && computerChoice.toLowerCase() === "rock") {
         console.log("Draw! Rock doesn't do anything to Rock");
@@ -162,7 +141,3 @@ function playRound(humanChoice, computerChoice) {
     }
 
 }
-
-// playGame(5);
-
-// todo: fix bug when player cancels or enters invalid choice
